@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -35,11 +36,20 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if ((enemyLayer.value & (1 << other.gameObject.layer)) > 0 || (playerLayer.value & (1 << other.gameObject.layer)) > 0)
+        else if (transform.right.x < 0 && (playerLayer.value & (1 << other.gameObject.layer)) > 0)
         {
             BaseStats otherObject = other.gameObject.GetComponent<BaseStats>();
             otherObject.SetHealth(baseDamage, "damage");
+            otherObject.FlashSprite();
+            Destroy(gameObject);
+        }
+        else if (transform.right.x > 0 && (enemyLayer.value & (1 << other.gameObject.layer)) > 0)
+        {
+            BaseStats otherObject = other.gameObject.GetComponent<BaseStats>();
+            otherObject.SetHealth(baseDamage, "damage");
+            otherObject.FlashSprite();
             Destroy(gameObject);
         }
     }
+    
 }

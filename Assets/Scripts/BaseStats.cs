@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BaseStats : MonoBehaviour
@@ -7,7 +8,8 @@ public class BaseStats : MonoBehaviour
     public GameObject currentBullet;
     public float cooldownModifier = 0f;
     public float damageModifier = 0f;
-    
+    public Color flashColor;
+    public float flashDuration = 0.11f;
 
     public void SetHealth(float amount, string type)
     {
@@ -29,5 +31,20 @@ public class BaseStats : MonoBehaviour
     public void SetSpeed(float newSpeed)
     {
         moveSpeed = newSpeed;
+    }
+
+    public void FlashSprite()
+    {
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        Color originalColor = spriteRenderer.color;
+        StartCoroutine(Flash(spriteRenderer, originalColor));
+    } 
+    
+    IEnumerator Flash(SpriteRenderer spriteRenderer, Color originalColor)
+    {
+        spriteRenderer.color = flashColor;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
+        yield return new WaitForSeconds(flashDuration);
     }
 }

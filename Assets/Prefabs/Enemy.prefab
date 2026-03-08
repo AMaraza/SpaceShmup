@@ -215,8 +215,10 @@ MonoBehaviour:
   health: 5
   moveSpeed: 2
   currentBullet: {fileID: 976098932026999931, guid: 5115b8931cf5a4a70a53c543e6941ebd, type: 3}
-  cooldownModifier: -1
+  cooldownModifier: -1.5
   damageModifier: 0
+  flashColor: {r: 0.8490566, g: 0.40450338, b: 0.40450338, a: 1}
+  flashDuration: 0.11
 --- !u!114 &8475495060983869047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,4 +235,7 @@ MonoBehaviour:
   bulletSpawner: {fileID: 6614445074656989464}
   wallMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
+  bulletMask:
+    serializedVersion: 2
+    m_Bits: 0
